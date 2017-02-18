@@ -14,8 +14,13 @@ repositories {
     mavenCentral()
 }
 
+run {
+    if (project.hasProperty("appArgs")) {
+        args Eval.me(appArgs)
+    }
+}
 dependencies {
-    compile 'com.sparkjava:spark-core:2.3'
+    compile 'com.sparkjava:spark-core:2.5.5'
     testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M3")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M3")
     compile 'org.thymeleaf:thymeleaf:3.0.3.RELEASE'

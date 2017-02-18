@@ -11,6 +11,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import static spark.Spark.get;
+import static spark.SparkBase.port;
 
 public class Server {
 
@@ -20,6 +21,9 @@ public class Server {
     private HashMap<String, String> fieldsForWebPage;
 
     public static void main(String[] args) {
+        port(Integer.valueOf(args[0]));
+
+
         Server testServer = new Server();
 
         HashMap<String, String> clientMap = new HashMap<>();
