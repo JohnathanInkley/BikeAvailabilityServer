@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92a77264-73bc-43ba-984e-d7a94d9108c7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/BikeAvailabilityCalculations/AddressStringToUserLocationConverter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/BikeAvailabilityCalculations/BikeAvailabilityMapProvider.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/BikeAvailabilityCalculations/BikeStopEntry.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/BikeAvailabilityCalculations/BikeStopsInRadiusCalculator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/BikeAvailabilityCalculations/RawBikeDataParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/BikeAvailabilityCalculations/UserLocation.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/BikeAvailabilityCalculations/WebDataReader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/BikeServer/Server.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/spark/template/thymeleaf/ThymeleafTemplateEngine.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/BikeServer/Server.java" afterPath="$PROJECT_DIR$/src/main/java/BikeServer/Server.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -1027,7 +1014,7 @@
       <updated>1487340939236</updated>
       <workItem from="1487340945966" duration="3235000" />
       <workItem from="1487374400576" duration="558000" />
-      <workItem from="1487414374707" duration="19460000" />
+      <workItem from="1487414374707" duration="19543000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed so multiple users can run simultaneously&#10;">
       <created>1487433623728</created>
@@ -1054,7 +1041,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23253000" />
+    <option name="totallyTimeSpent" value="23336000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="1439" height="757" extended-state="0" />

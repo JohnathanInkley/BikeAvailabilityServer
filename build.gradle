@@ -20,7 +20,7 @@ run {
     }
 }
 dependencies {
-    compile 'com.sparkjava:spark-core:2.5.5'
+    compile 'com.sparkjava:spark-core:2.1'
     testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M3")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.0-M3")
     compile 'org.thymeleaf:thymeleaf:3.0.3.RELEASE'
