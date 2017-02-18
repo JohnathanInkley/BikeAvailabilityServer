@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BikeAvailabilityServer.iml" filepath="$PROJECT_DIR$/.idea/modules/BikeAvailabilityServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BikeAvailabilityServer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/BikeAvailabilityServer_main.iml" group="BikeAvailabilityServer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BikeAvailabilityServer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/BikeAvailabilityServer_test.iml" group="BikeAvailabilityServer" />
+    </modules>
+  </component>
+</project>
