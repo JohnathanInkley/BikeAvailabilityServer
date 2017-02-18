@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="92a77264-73bc-43ba-984e-d7a94d9108c7" name="Default" comment="" />
+    <list default="true" id="92a77264-73bc-43ba-984e-d7a94d9108c7" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -1021,7 +1023,7 @@
       <updated>1487340939236</updated>
       <workItem from="1487340945966" duration="3235000" />
       <workItem from="1487374400576" duration="558000" />
-      <workItem from="1487414374707" duration="18132000" />
+      <workItem from="1487414374707" duration="18407000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed so multiple users can run simultaneously&#10;">
       <created>1487433623728</created>
@@ -1048,7 +1050,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21925000" />
+    <option name="totallyTimeSpent" value="22200000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="1439" height="757" extended-state="0" />
