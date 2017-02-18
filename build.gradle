@@ -7,6 +7,9 @@ apply plugin: 'application'
 sourceCompatibility = 1.8
 mainClassName = "BikeServer.Server"
 
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+
 repositories {
     mavenCentral()
 }
