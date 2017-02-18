@@ -29,13 +29,9 @@ public class Server {
             String distanceAsString = request.queryParams("userDistance");
             if (location != null) {
                 clientMap.put("bikeStops", testServer.produceClientWebpage(location, Double.valueOf(distanceAsString)));
-                response.redirect("/locationAccepted");
+                return new ModelAndView(clientMap, "locationAccepted");
             }
             return new ModelAndView(clientMap, "home");
-        }, testServer.getEngine());
-
-        get("/locationAccepted", (request, response) -> {
-            return new ModelAndView(clientMap, "locationAccepted");
         }, testServer.getEngine());
 
 
