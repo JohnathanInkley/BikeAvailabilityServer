@@ -19,7 +19,6 @@ public class Server {
     public static void main(String[] args) {
         port(Integer.valueOf(args[0]));
         Server testServer = new Server();
-
         HashMap<String, String> clientMap = new HashMap<>();
 
         get("/home", (request, response) -> {
@@ -31,8 +30,6 @@ public class Server {
             }
             return new ModelAndView(clientMap, "home");
         }, testServer.getEngine());
-
-
     }
 
     private String produceClientWebpage(String location, double distance) {
