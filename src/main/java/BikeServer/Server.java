@@ -51,6 +51,10 @@ public class Server {
         BikeStopsInRadiusCalculator clientCalculator = mapProvider.getNewRadiusCalculator();
         clientCalculator.setCurrentLocation(location);
         HashMap<String, BikeStopEntry> bikeStopEntriesWithinDistance = clientCalculator.getBikeStopEntriesWithinDistance(distance);
+        return createArrayOfBikeEntries(bikeStopEntriesWithinDistance);
+    }
+
+    private BikeWebTableEntry[] createArrayOfBikeEntries(HashMap<String, BikeStopEntry> bikeStopEntriesWithinDistance) {
         BikeWebTableEntry[] webTableArray = new BikeWebTableEntry[bikeStopEntriesWithinDistance.size()];
         int i = 0;
         for (String place : bikeStopEntriesWithinDistance.keySet()) {

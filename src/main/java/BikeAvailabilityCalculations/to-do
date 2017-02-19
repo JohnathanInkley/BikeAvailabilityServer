@@ -5,7 +5,7 @@ Create dispatcher that launches a new query and gets data from the bikeDataDispe
 
 Future idea, work out expected number of bikes in a given amount of  time, so if user needs to choose between two locations
 they can see which is more likely to have free spaces in say 30 mins time
-Maybe a simple predict feature that looks at last X bike maps, and calculates a crude derivate to guess next bike map?
+Maybe a simple predict feature that looks at last X bike maps, and calculates a crude derivative to guess next bike map?
 
 ---- Immediate to dos -----
 
