@@ -45,4 +45,8 @@ public class BikeStopEntry {
     public UserLocation getLocation() {
         return location;
     }
+
+    public int getFreeBikes() {
+        return numberOfFreeBikes;
+    }
 }
