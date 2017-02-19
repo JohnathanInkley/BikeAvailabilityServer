@@ -20,26 +20,17 @@ public class Server {
         port(Integer.valueOf(args[0]));
         Server testServer = new Server();
 
-        HashMap<String, String> clientMap = new HashMap<>();
+        HashMap<String, Object> clientMap = new HashMap<>();
 
         get("/home", (request, response) -> {
             String location = request.queryParams("userLocation");
             String distanceAsString = request.queryParams("userDistance");
             if (location != null) {
-                clientMap.put("bikeStops", testServer.produceClientWebpage(location, Double.valueOf(distanceAsString)));
-                return new ModelAndView(clientMap, "locationAccepted");
+                clientMap.put("bikeTable", testServer.produceClientWebpageTable(location, Double.valueOf(distanceAsString)));
+                return new ModelAndView(clientMap, "bikeStopTable");
             }
             return new ModelAndView(clientMap, "home");
         }, testServer.getEngine());
-
-
-    }
-
-    private String produceClientWebpage(String location, double distance) {
-        BikeStopsInRadiusCalculator clientCalculator = mapProvider.getNewRadiusCalculator();
-        clientCalculator.setCurrentLocation(location);
-        HashMap<String, BikeStopEntry> bikeStopEntriesWithinDistance = clientCalculator.getBikeStopEntriesWithinDistance(distance);
-        return bikeStopEntriesWithinDistance.toString();
     }
 
     public Server() {
@@ -54,5 +45,31 @@ public class Server {
 
     public ThymeleafTemplateEngine getEngine() {
         return engine;
+    }
+
+    private BikeWebTableEntry[] produceClientWebpageTable(String location, double distance) {
+        BikeStopsInRadiusCalculator clientCalculator = mapProvider.getNewRadiusCalculator();
+        clientCalculator.setCurrentLocation(location);
+        HashMap<String, BikeStopEntry> bikeStopEntriesWithinDistance = clientCalculator.getBikeStopEntriesWithinDistance(distance);
+        BikeWebTableEntry[] webTableArray = new BikeWebTableEntry[bikeStopEntriesWithinDistance.size()];
+        int i = 0;
+        for (String place : bikeStopEntriesWithinDistance.keySet()) {
+            BikeStopEntry currentEntry = bikeStopEntriesWithinDistance.get(place);
+            webTableArray[i] = new BikeWebTableEntry(place, Integer.toString(currentEntry.getFreeBikes()), "0");
+            i++;
+        }
+        return webTableArray;
+    }
+
+    public static class BikeWebTableEntry {
+        public String location;
+        public String numberBikes;
+        public String distanceFromCurrentLocation;
+
+        public BikeWebTableEntry(String location, String numberBikes, String distanceFromCurrentLocation) {
+            this.location = location;
+            this.numberBikes = numberBikes;
+            this.distanceFromCurrentLocation = distanceFromCurrentLocation;
+        }
     }
 }
