@@ -7,8 +7,6 @@ import spark.ModelAndView;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import java.util.HashMap;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import static spark.Spark.get;
 import static spark.SparkBase.port;
@@ -16,14 +14,10 @@ import static spark.SparkBase.port;
 public class Server {
 
     private BikeAvailabilityMapProvider mapProvider;
-    private Executor clientThreadHandler = Executors.newCachedThreadPool();
     private ThymeleafTemplateEngine engine;
-    private HashMap<String, String> fieldsForWebPage;
 
     public static void main(String[] args) {
         port(Integer.valueOf(args[0]));
-
-
         Server testServer = new Server();
 
         HashMap<String, String> clientMap = new HashMap<>();
@@ -51,7 +45,6 @@ public class Server {
     public Server() {
         initialiseMapProvider();
         engine = new ThymeleafTemplateEngine();
-        fieldsForWebPage = new HashMap<>();
     }
 
     private void initialiseMapProvider() {
