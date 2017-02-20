@@ -14,6 +14,7 @@ public class AddressStringToUserLocationConverter {
             requestBuilder.append(word);
             requestBuilder.append("+");
         }
+        requestBuilder.append("London");
         requestBuilder.append("&key=");
         requestBuilder.append(GOOGLE_API_KEY);
         return requestBuilder.toString();
