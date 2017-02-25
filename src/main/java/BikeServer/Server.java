@@ -14,7 +14,7 @@ import static spark.SparkBase.port;
 public class Server {
 
     private BikeAvailabilityMapProvider mapProvider;
-    private ThymeleafTemplateEngine engine;
+    private ThymeleafTemplateEngine templateEngine;
 
     public static void main(String[] args) {
         port(Integer.valueOf(args[0]));
@@ -30,12 +30,12 @@ public class Server {
                 return new ModelAndView(clientMap, "bikeStopTable");
             }
             return new ModelAndView(clientMap, "home");
-        }, testServer.getEngine());
+        }, testServer.getTemplateEngineInstance());
     }
 
     public Server() {
         initialiseMapProvider();
-        engine = new ThymeleafTemplateEngine();
+        templateEngine = new ThymeleafTemplateEngine();
     }
 
     private void initialiseMapProvider() {
@@ -43,8 +43,8 @@ public class Server {
         mapProvider.start();
     }
 
-    public ThymeleafTemplateEngine getEngine() {
-        return engine;
+    public ThymeleafTemplateEngine getTemplateEngineInstance() {
+        return templateEngine;
     }
 
     private BikeWebTableEntry[] produceClientWebpageTable(String location, double distance) {

@@ -19,6 +19,17 @@ run {
         args Eval.me(appArgs)
     }
 }
+
+test {
+    outputs.upToDateWhen { false }
+}
+
+test {
+    afterTest { desc, result ->
+        println "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
+}
+
 dependencies {
     compile 'com.sparkjava:spark-core:2.1'
     testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M3")

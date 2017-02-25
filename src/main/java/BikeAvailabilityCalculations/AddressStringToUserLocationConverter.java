@@ -6,7 +6,7 @@ public class AddressStringToUserLocationConverter {
     private static String inputLocation;
     private static StringBuilder requestBuilder;
 
-    private static String getGoogleGeocodeSyntax() {
+    public static String getGoogleGeocodeSyntax() {
         requestBuilder = new StringBuilder();
         requestBuilder.append("https://maps.googleapis.com/maps/api/geocode/json?address=");
         String[] locationWords = inputLocation.split("\\s+");
