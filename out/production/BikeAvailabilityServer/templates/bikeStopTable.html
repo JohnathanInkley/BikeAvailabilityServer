@@ -9,11 +9,9 @@
 <table>
     <td> Bike stop location </td>
     <td> Number of free bikes </td>
-    <td> Distance (miles) </td>
     <tr data-th-each="bikeEntry : ${bikeTable}">
         <td data-th-text="${bikeEntry.location}"/>
         <td data-th-text="${bikeEntry.numberBikes}" align="right" />
-        <td data-th-text="${bikeEntry.distanceFromCurrentLocation}" align="right" />
     </tr>
 </table>
 </form>
