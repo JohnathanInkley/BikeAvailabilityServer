@@ -1,4 +1,5 @@
-- In clientAvailabilityMap, sort by distance - no need for hash map
-- Integrate BikeStopEntry into clientRequestEntry that has an extra "distanceFromLocation" field
+/ No internal error is address cannot be found
+/ sort out displaying of distances to 2 decimal places and sort test
+/ Integrate BikeStopEntry into clientRequestEntry that has an extra "distanceFromLocation" field
 - Basic prediction of bikes in future time period
 - Think about an API

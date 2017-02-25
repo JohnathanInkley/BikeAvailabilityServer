@@ -1,7 +1,6 @@
 package BikeServer;
 
 import BikeAvailabilityCalculations.BikeAvailabilityMapProvider;
-import BikeAvailabilityCalculations.BikeStopEntry;
 import BikeAvailabilityCalculations.BikeStopsInRadiusCalculator;
 import spark.ModelAndView;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
@@ -50,30 +49,16 @@ public class Server {
     private BikeWebTableEntry[] produceClientWebpageTable(String location, double distance) {
         BikeStopsInRadiusCalculator clientCalculator = mapProvider.getNewRadiusCalculator();
         clientCalculator.setCurrentLocation(location);
-        HashMap<String, BikeStopEntry> bikeStopEntriesWithinDistance = clientCalculator.getBikeStopEntriesWithinDistance(distance);
+        BikeStopWebTable bikeStopEntriesWithinDistance = clientCalculator.getBikeStopEntriesWithinDistanceForWeb(distance);
         return createArrayOfBikeEntries(bikeStopEntriesWithinDistance);
     }
 
-    private BikeWebTableEntry[] createArrayOfBikeEntries(HashMap<String, BikeStopEntry> bikeStopEntriesWithinDistance) {
+    private BikeWebTableEntry[] createArrayOfBikeEntries(BikeStopWebTable bikeStopEntriesWithinDistance) {
         BikeWebTableEntry[] webTableArray = new BikeWebTableEntry[bikeStopEntriesWithinDistance.size()];
-        int i = 0;
-        for (String place : bikeStopEntriesWithinDistance.keySet()) {
-            BikeStopEntry currentEntry = bikeStopEntriesWithinDistance.get(place);
-            webTableArray[i] = new BikeWebTableEntry(place, Integer.toString(currentEntry.getFreeBikes()), "0");
-            i++;
+        bikeStopEntriesWithinDistance.startIterating();
+        for (int i = 0; i < bikeStopEntriesWithinDistance.size(); i++) {
+            webTableArray[i] = bikeStopEntriesWithinDistance.nextEntry();
         }
         return webTableArray;
-    }
-
-    public static class BikeWebTableEntry {
-        public String location;
-        public String numberBikes;
-        public String distanceFromCurrentLocation;
-
-        public BikeWebTableEntry(String location, String numberBikes, String distanceFromCurrentLocation) {
-            this.location = location;
-            this.numberBikes = numberBikes;
-            this.distanceFromCurrentLocation = distanceFromCurrentLocation;
-        }
     }
 }

@@ -7,7 +7,7 @@ apply plugin: 'application'
 sourceCompatibility = 1.8
 mainClassName = "BikeServer.Server"
 
-task stage(dependsOn: ['build', 'clean'])
+task stage(dependsOn: ['build', 'clean', 'test'])
 build.mustRunAfter clean
 
 repositories {
@@ -17,16 +17,6 @@ repositories {
 run {
     if (project.hasProperty("appArgs")) {
         args Eval.me(appArgs)
-    }
-}
-
-test {
-    outputs.upToDateWhen { false }
-}
-
-test {
-    afterTest { desc, result ->
-        println "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
     }
 }
 

@@ -1,0 +1,5 @@
+1) Using hashmap for bike stop data originally seemed like a smart idea. Built system around it etc, used in tests.
+   - however now want to change so we can sort by distance but this requires massive editing of all code and tests.
+   - SHOULD HAVE MADE OWN CLASS AND HIDDEN HASH MAP INSIDE SO THIS WOULD BE TRIVIAL CHANGE
+
+   

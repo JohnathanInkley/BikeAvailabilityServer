@@ -24,10 +24,20 @@ public class AddressStringToUserLocationConverter {
         inputLocation = location;
         getGoogleGeocodeSyntax();
         String googleResults = WebDataReader.readTextFromURL(requestBuilder.toString());
-        String intermediateResult = googleResults.split("\"location\"")[1];
-        String[] splitString = intermediateResult.split("\\s+");
-        double latitude = Double.valueOf(splitString[5].replace(",",""));
-        double longitude = Double.valueOf(splitString[8]);
+        double latitude = 0;
+        double longitude = 0;
+        if (addressWasFound(googleResults)) {
+            String intermediateResult = googleResults.split("\"location\"")[1];
+            String[] splitString = intermediateResult.split("\\s+");
+            latitude = Double.valueOf(splitString[5].replace(",", ""));
+            longitude = Double.valueOf(splitString[8]);
+        } else {
+            location = "No location found";
+        }
         return new UserLocation(location, latitude, longitude);
+    }
+
+    private static boolean addressWasFound(String googleResults) {
+        return googleResults.contains("location");
     }
 }

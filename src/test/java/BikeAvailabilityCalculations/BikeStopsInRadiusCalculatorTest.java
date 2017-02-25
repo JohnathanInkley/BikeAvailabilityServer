@@ -1,5 +1,7 @@
 package BikeAvailabilityCalculations;
 
+import BikeServer.BikeStopWebTable;
+import BikeServer.BikeWebTableEntry;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -48,22 +50,6 @@ public class BikeStopsInRadiusCalculatorTest {
         assertEquals(bikeStopsCloseFromMap, calculatedCloseBikeStops.keySet());
     }
 
-    /*
-    @Test
-    public void calculatorShouldTakeUserLocationAsStringAndGetGoogleSyntax() {
-        String location = "200 Cromwell Road, London";
-        String googleReturnedSyntax = calculator.getGoogleGeocodeSyntax(location);
-        String googleActualSyntax = "https://maps.googleapis.com/maps/api/geocode/json?address=200+Cromwell+Road,+London+&key=AIzaSyDuzsl1bwFRRwvwUSNkkm5sAs8rb05AyEI";
-        assertEquals(googleActualSyntax, googleReturnedSyntax);
-    }
-
-    @Test
-    public void calculatorShouldTakeStringAndReturnUserLocation() {
-    UserLocation cromwellRoad = new UserLocation("200 Cromwell Road, London", 51.4946983, -0.1936039);
-    UserLocation returnedLocation = calculator.getUserLocationFromString("200 Cromwell Road, London");
-    assertEquals(cromwellRoad, returnedLocation);
-    } */
-
     @Test
     public void calculatorShouldTakeAddressAsStringAndReturnAvailabilityMap() {
         calculator.setCurrentLocation("River Street, Clerkenwell");
@@ -74,5 +60,25 @@ public class BikeStopsInRadiusCalculatorTest {
         bikeStopsCloseFromMap.add("Hardwick Street, Clerkenwell");
 
         assertEquals(bikeStopsCloseFromMap, calculatedCloseBikeStops.keySet());
+    }
+
+    @Test
+    public void nonExistentAddressesShouldReturnAnEmptyMap() {
+        calculator.setCurrentLocation("dfgdfzj");
+
+        HashMap<String, BikeStopEntry> calculatedCloseBikeStops = calculator.getBikeStopEntriesWithinDistance(0.15);
+        HashSet<String> bikeStopsCloseFromMap = new HashSet<>();
+
+        assertEquals(bikeStopsCloseFromMap, calculatedCloseBikeStops.keySet());
+    }
+
+    @Test
+    public void calculatorShouldReturnSpecialisedWebSetWhenRequested() {
+        calculator.setCurrentLocation("River Street, Clerkenwell");
+        BikeStopWebTable returnTable = calculator.getBikeStopEntriesWithinDistanceForWeb(0.15);
+        BikeStopWebTable expectedTable = new BikeStopWebTable();
+        expectedTable.add(new BikeWebTableEntry("River Street , Clerkenwell", "0", "0.02"));
+        expectedTable.add(new BikeWebTableEntry("Hardwick Street, Clerkenwell", "0", "0.12"));
+        assertEquals(expectedTable, returnTable);
     }
 }

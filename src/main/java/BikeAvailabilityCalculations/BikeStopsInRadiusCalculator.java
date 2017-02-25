@@ -1,5 +1,8 @@
 package BikeAvailabilityCalculations;
 
+import BikeServer.BikeStopWebTable;
+import BikeServer.BikeWebTableEntry;
+
 import java.util.HashMap;
 
 public class BikeStopsInRadiusCalculator {
@@ -44,5 +47,17 @@ public class BikeStopsInRadiusCalculator {
 
     public UserLocation getCurrentLocation() {
         return currentLocation;
+    }
+
+    public BikeStopWebTable getBikeStopEntriesWithinDistanceForWeb(double radius) {
+        BikeStopWebTable bikeStopsWithinDistance = new BikeStopWebTable();
+        currentBikeStopMap.forEach((stopName, stopEntry) -> {
+            double delta = currentLocation.distanceTo(stopEntry.getLocation());
+            if (delta <= radius) {
+                delta = Math.round(delta*100)/100.0;
+                bikeStopsWithinDistance.add(new BikeWebTableEntry(stopName, Integer.toString(stopEntry.getFreeBikes()), Double.toString(delta)));
+            }
+        });
+        return bikeStopsWithinDistance;
     }
 }
