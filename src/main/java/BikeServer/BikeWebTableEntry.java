@@ -27,6 +27,6 @@ public class BikeWebTableEntry implements Comparable {
     @Override
     public boolean equals(Object o) {
         BikeWebTableEntry otherEntry = (BikeWebTableEntry) o;
-        return this.location == otherEntry.location && this.distanceFromCurrentLocation == otherEntry.distanceFromCurrentLocation;
+        return this.location.equals(otherEntry.location) && this.distanceFromCurrentLocation.equals(otherEntry.distanceFromCurrentLocation);
     }
 }

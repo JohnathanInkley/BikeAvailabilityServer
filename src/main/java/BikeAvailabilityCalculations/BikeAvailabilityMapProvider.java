@@ -23,12 +23,20 @@ public class BikeAvailabilityMapProvider {
         ConcurrentHashMap<String, BikeStopEntry> temporaryMap;
         while (true) {
             temporaryMap = new ConcurrentHashMap<>(dataProvider.requestNewBikeAvailabilityMap());
-            latestBikeAvailabilityMap = temporaryMap;
+            if (temporaryMap.keySet().size() >= latestBikeAvailabilityMap.keySet().size()) {
+                latestBikeAvailabilityMap = temporaryMap;
+            }
         }
     }
 
     public HashMap<String, BikeStopEntry> getLatestBikeAvailabilityMap() {
         return new HashMap<>(latestBikeAvailabilityMap);
+    }
+
+    public BikeStopsInRadiusCalculator getNewRadiusCalculator() {
+        BikeStopsInRadiusCalculator newCalculator = new BikeStopsInRadiusCalculator();
+        newCalculator.openConnectionToMapProvider(this);
+        return newCalculator;
     }
 
     public void startDummy() {
@@ -51,11 +59,5 @@ public class BikeAvailabilityMapProvider {
 
     public HashMap<String, BikeStopEntry> getLatestBikeAvailabilityMapDummy() {
         return new HashMap<>(latestBikeAvailabilityMapDummy);
-    }
-
-    public BikeStopsInRadiusCalculator getNewRadiusCalculator() {
-        BikeStopsInRadiusCalculator newCalculator = new BikeStopsInRadiusCalculator();
-        newCalculator.openConnectionToMapProvider(this);
-        return newCalculator;
     }
 }

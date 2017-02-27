@@ -18,9 +18,9 @@ class BikeWebTableEntryTest {
     public void equalEntriesShouldBeEqual() {
         BikeWebTableEntry anEntry = new BikeWebTableEntry("here", "0", "0.1");
         BikeWebTableEntry anEqualEntry = new BikeWebTableEntry("here", "3", "0.1");
-        BikeWebTableEntry aBadEntry = new BikeWebTableEntry("there", "0", "0.3");
+        BikeWebTableEntry aNonEqualEntry = new BikeWebTableEntry("there", "0", "0.3");
         assertTrue(anEntry.equals(anEqualEntry));
-        assertFalse(anEntry.equals(aBadEntry));
+        assertFalse(anEntry.equals(aNonEqualEntry));
     }
 
 }

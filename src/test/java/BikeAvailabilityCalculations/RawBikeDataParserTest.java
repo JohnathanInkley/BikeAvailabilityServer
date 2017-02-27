@@ -50,4 +50,10 @@ class RawBikeDataParserTest {
         assertEquals(longitude, bikeStopData.getLongitude());
     }
 
+    @Test
+    public void ifWeEncounterAnErrorReadingWeGetAnEmptyMap() {
+        RawBikeDataParser parser = new RawBikeDataParser(WebDataReaderSuperClass.class);
+        HashMap<String, BikeStopEntry> mapThatShouldBeEmpty = parser.requestNewBikeAvailabilityMap();
+        assertTrue(mapThatShouldBeEmpty.isEmpty());
+    }
 }

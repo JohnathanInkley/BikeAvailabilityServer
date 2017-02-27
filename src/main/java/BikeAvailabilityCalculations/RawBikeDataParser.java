@@ -2,6 +2,7 @@ package BikeAvailabilityCalculations;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,6 +16,8 @@ public class RawBikeDataParser {
     private String webAddressOfBikeData;
     private ArrayList<String> rawDataForEachBikeStop;
     private HashMap<String, BikeStopEntry> bikeAvailabilityAndLocationMap;
+    private static Class<? extends WebDataReaderSuperClass> webReader;
+    private static Method webReadingFunction;
 
     public static void main(String[] args) {
         RawBikeDataParser parser = new RawBikeDataParser();
@@ -35,18 +38,41 @@ public class RawBikeDataParser {
 
     public RawBikeDataParser() {
         webAddressOfBikeData = "https://api.tfl.gov.uk/bikepoint";
+        webReader = WebDataReader.class;
+        try {
+            webReadingFunction = webReader.getMethod("readTextFromURL", String.class);
+        } catch (NoSuchMethodException e) {
+            // If no method is found, when we attempt to use the method we will get an exception that is caught and dealt with
+        }
     }
 
+    public RawBikeDataParser(Class<? extends WebDataReaderSuperClass> readerClass) {
+        webAddressOfBikeData = "https://api.tfl.gov.uk/bikepoint";
+        webReader = readerClass;
+        try {
+            webReadingFunction = webReader.getDeclaredMethod("readTextFromURL", String.class);
+        } catch (NoSuchMethodException e) {
+            // If no method is found, when we attempt to use the method we will get an exception that is caught and dealt with
+        }
+    }
 
     public HashMap<String,BikeStopEntry> requestNewBikeAvailabilityMap() {
         retrieveRawDataFromTfL();
-        splitRawDataAtBikeStopNames(allBikePointDataAsString, "commonName");
-        createFreeBikeAndLocationMap();
-        return bikeAvailabilityAndLocationMap;
+        if (allBikePointDataAsString.equals("")) {
+            return new HashMap<>();
+        } else {
+            splitRawDataAtBikeStopNames(allBikePointDataAsString, "commonName");
+            createFreeBikeAndLocationMap();
+            return bikeAvailabilityAndLocationMap;
+        }
     }
 
     private void retrieveRawDataFromTfL() {
-        allBikePointDataAsString = WebDataReader.readTextFromURL(webAddressOfBikeData);
+        try {
+            allBikePointDataAsString = (String) webReadingFunction.invoke(null, webAddressOfBikeData);
+        } catch (Exception e) {
+            allBikePointDataAsString = "";
+        }
     }
 
 

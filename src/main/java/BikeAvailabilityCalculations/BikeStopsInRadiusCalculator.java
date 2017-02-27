@@ -31,6 +31,18 @@ public class BikeStopsInRadiusCalculator {
         this.currentLocation = currentLocation;
     }
 
+    public BikeStopWebTable getBikeStopEntriesWithinDistanceForWeb(double radius) {
+        BikeStopWebTable bikeStopsWithinDistance = new BikeStopWebTable();
+        currentBikeStopMap.forEach((stopName, stopEntry) -> {
+            double delta = currentLocation.distanceTo(stopEntry.getLocation());
+            if (delta <= radius) {
+                delta = Math.round(delta*100)/100.0;
+                bikeStopsWithinDistance.add(new BikeWebTableEntry(stopName, Integer.toString(stopEntry.getFreeBikes()), Double.toString(delta)));
+            }
+        });
+        return bikeStopsWithinDistance;
+    }
+
     public HashMap<String,BikeStopEntry> getBikeStopEntriesWithinDistance(double radius) {
         HashMap<String, BikeStopEntry> bikeStopsWithinDistance = new HashMap<>();
         currentBikeStopMap.forEach((stopName, stopEntry) -> {
@@ -47,17 +59,5 @@ public class BikeStopsInRadiusCalculator {
 
     public UserLocation getCurrentLocation() {
         return currentLocation;
-    }
-
-    public BikeStopWebTable getBikeStopEntriesWithinDistanceForWeb(double radius) {
-        BikeStopWebTable bikeStopsWithinDistance = new BikeStopWebTable();
-        currentBikeStopMap.forEach((stopName, stopEntry) -> {
-            double delta = currentLocation.distanceTo(stopEntry.getLocation());
-            if (delta <= radius) {
-                delta = Math.round(delta*100)/100.0;
-                bikeStopsWithinDistance.add(new BikeWebTableEntry(stopName, Integer.toString(stopEntry.getFreeBikes()), Double.toString(delta)));
-            }
-        });
-        return bikeStopsWithinDistance;
     }
 }
